@@ -1,0 +1,42 @@
+import express, { type Application, type Request, type Response, type NextFunction } from 'express';
+import cors from 'cors';
+import helmet from 'helmet';
+import morgan from 'morgan';
+import dotenv from 'dotenv';
+import authRoutes from './routes/authRoutes.js';
+import mealRoutes from './routes/mealRoutes.js';
+import workoutRoutes from './routes/workoutRoutes.js';
+import userRoutes from './routes/userRoutes.js';
+
+dotenv.config();
+
+const app: Application = express();
+
+// Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
+app.use(helmet());
+app.use(morgan('dev'));
+
+// Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/meals', mealRoutes);
+app.use('/api/workouts', workoutRoutes);
+app.use('/api/user', userRoutes);
+
+app.get('/', (req: Request, res: Response) => {
+    res.send('Healthyfy API is running...');
+});
+
+// Error handling middleware
+app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
+    const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
+    res.status(statusCode);
+    res.json({
+        message: err.message,
+        stack: process.env.NODE_ENV === 'production' ? null : err.stack,
+    });
+});
+
+export default app;

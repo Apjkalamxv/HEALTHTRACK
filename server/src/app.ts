@@ -15,7 +15,8 @@ const app: Application = express();
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors({orgin:['https://healthyfy-frontend1.onrender.com/signin'],
+              credentials:true}));
 app.use(helmet());
 app.use(morgan('dev'));
 

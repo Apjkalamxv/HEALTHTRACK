@@ -15,6 +15,7 @@ const app: Application = express();
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+<<<<<<< HEAD
 app.use(cors({
     origin: [
         'http://localhost:3000',
@@ -23,6 +24,10 @@ app.use(cors({
     ],
     credentials: true
 }));
+=======
+app.use(cors({orgin:['https://healthyfy-frontend1.onrender.com/signin'],
+              credentials:true}));
+>>>>>>> 21a0ddc31144bda4bc30aac339f24f19dac09a18
 app.use(helmet());
 app.use(morgan('dev'));
 

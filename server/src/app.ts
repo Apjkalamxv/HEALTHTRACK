@@ -15,7 +15,14 @@ const app: Application = express();
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors({
+    origin: [
+        'http://localhost:3000',
+        'http://localhost:5173',
+        'YOUR_RENDER_FRONTEND_LINK_HERE' // <--- PASTE YOUR RENDER LINK HERE
+    ],
+    credentials: true
+}));
 app.use(helmet());
 app.use(morgan('dev'));
 

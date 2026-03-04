@@ -20,7 +20,7 @@ app.use(cors({
     origin: [
         'http://localhost:3000',
         'http://localhost:5173',
-        'YOUR_RENDER_FRONTEND_LINK_HERE' // <--- PASTE YOUR RENDER LINK HERE
+        'https://healthtrack-frontend.onrender.com' // <--- PASTE YOUR RENDER LINK HERE
     ],
     credentials: true
 }));

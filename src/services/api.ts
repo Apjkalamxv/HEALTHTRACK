@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'https://healthtrack-backend-qkc1.onrender.com',
+    baseURL: import.meta.env.VITE_API_URL || 'https://healthtrack-backend-qkc1.onrender.com/api',
 });
 
 // Add a request interceptor to include JWT token
